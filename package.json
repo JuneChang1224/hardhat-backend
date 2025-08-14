@@ -1,0 +1,23 @@
+{
+  "name": "wallet-connection",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "npx hardhat ignition deploy ./ignition/modules/CompleteSystem.ts --reset --network localhost",
+    "test": "npx hardhat test",
+    "compile": "npx hardhat compile"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox-viem": "^4.1.0",
+    "@openzeppelin/contracts": "^5.4.0",
+    "@types/chai": "^5.2.2",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^24.2.1",
+    "hardhat": "^2.26.1",
+    "typescript": "^5.9.2"
+  }
+}
