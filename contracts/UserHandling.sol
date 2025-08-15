@@ -236,4 +236,41 @@ contract UserManagement {
         
         return (managers, sellers, suppliers);
     }
+    
+    /**
+     * @dev Get all registered users with detailed information
+     * @return userAddresses Array of user addresses
+     * @return roles Array of user roles (1=Manager, 2=Seller, 3=Supplier)
+     * @return displayNames Array of user display names
+     * @return registeredAts Array of registration timestamps
+     * @return registeredBys Array of who registered each user
+     */
+    function getAllUsersWithDetails() external view returns (
+        address[] memory userAddresses,
+        Role[] memory roles,
+        string[] memory displayNames,
+        uint256[] memory registeredAts,
+        address[] memory registeredBys
+    ) {
+        uint256 totalUsers = registeredUsers.length;
+        
+        userAddresses = new address[](totalUsers);
+        roles = new Role[](totalUsers);
+        displayNames = new string[](totalUsers);
+        registeredAts = new uint256[](totalUsers);
+        registeredBys = new address[](totalUsers);
+        
+        for (uint256 i = 0; i < totalUsers; i++) {
+            address userAddr = registeredUsers[i];
+            User memory user = users[userAddr];
+            
+            userAddresses[i] = userAddr;
+            roles[i] = user.role;
+            displayNames[i] = user.displayName;
+            registeredAts[i] = user.registeredAt;
+            registeredBys[i] = user.registeredBy;
+        }
+        
+        return (userAddresses, roles, displayNames, registeredAts, registeredBys);
+    }
 }
